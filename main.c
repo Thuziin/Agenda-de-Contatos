@@ -103,9 +103,9 @@ void alterarContato (agenda agendaContatos[], int aux) {
     gets(nomeContato);
     system("cls");
 
+    // Loop que intera a agenda e verifica se o nome passado está presente na agenda
     for (int i = 0; i < aux; i++) {
         if (!strcmp(agendaContatos[i].nome, nomeContato)) {
-
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
             printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
@@ -131,6 +131,8 @@ void alterarContato (agenda agendaContatos[], int aux) {
         }
     }
     system("cls");
+
+    // Caso o nome não seja encontrado, retorna uma mensagem informando.
     printf("ESSE CONTATO NAO ESTA CADASTRADO!\n");
 }
 
@@ -144,6 +146,7 @@ void pesquisarPorNome(agenda agendaContatos[], int aux) {
     printf("Digite o nome do cliente a ser pesquisado: ");
     gets(nomePesquisado);
 
+    // Loop que intera sobre a agenda e verifica se o nome passado está cadastrado.
     for(int i = 0; i < aux; i++) {
         if(strcmp(agendaContatos[i].nome, nomePesquisado) == 0) {
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
@@ -155,6 +158,7 @@ void pesquisarPorNome(agenda agendaContatos[], int aux) {
         } 
     }
     system("cls");
+    // Caso o nome não esteja cadastrado, retorna uma mensagem informando
     printf("CONTATO NAO ENCONTRADO!\n");
 }
 
@@ -163,14 +167,17 @@ void pesquisarPorNome(agenda agendaContatos[], int aux) {
 void pesquisarAniversariantesPorMes(agenda agendaContatos[], int aux) {
     listarAgenda(agendaContatos, aux);
 
-    int mes, verificador = 0;
+    int mes;
+    // Variavel de controle.
+    int verificador = 0;
     printf("\nInforme o mes do contato: ");
     scanf("%d", &mes);
     
     printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
     printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
     printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-    
+
+    // Loop que intera sobre a agenda e verifica quem dos contados faz aniversário no mês passdo.    
     for (int i = 0; i < aux; i++) {
         if(mes ==  agendaContatos[i].aniversario[1]) {
             verificador++;
@@ -180,6 +187,7 @@ void pesquisarAniversariantesPorMes(agenda agendaContatos[], int aux) {
         }
     }
 
+    // Condição caso não exista aniversariantes no mês, com retorno de uma mensagem informando.
     if (verificador == 0) {
         system("cls");
         printf("SEM ANIVERSARIANTES NESTE MES!\n");
@@ -198,6 +206,7 @@ int excluirContato(agenda agendaContatos[], int aux) {
     gets(nomeExclusao);
     system("cls");
 
+    // Loop que intera sobre a agenda e verifica se o nome passado está cadastrado.
     for(int i = 0; i < aux; i++) {
         if(strcmp(agendaContatos[i].nome, nomeExclusao) == 0) {
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
@@ -206,19 +215,25 @@ int excluirContato(agenda agendaContatos[], int aux) {
             printf("| %-27s | %-15s | %-40s | %-26s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
             
+            // Condição que verifica se o usuário deseja realmente excluir o contato.
             printf("Deseja realmente excluir esse contato? (s/n): ");
             resposta = getche();
 
             if (resposta == 's' || resposta == 'S') {
+                // Loop que reorganiza a agenda após a exclusão do contato.
                 for (int j = i; j < aux - 1; j++) {
                     agendaContatos[j] = agendaContatos[j + 1];
                 }
+                // Decremento do contador de contatos.
                 return aux - 1;
             } else {
+                // Caso o usuário não deseje excluir o contato, não ocorre decremtno do contador de contatos.
                 return aux;
             }
         } 
     }
+
+    // Caso o nome não esteja cadastrado, retorna uma mensagem informando
     printf("NOME NÃO ENCONTRADO!\n");
     return aux;
 }
@@ -229,6 +244,7 @@ void main () {
     agenda agendaContatos[MAXIMO]; 
 
     do {
+        // Menu de opções.
         printf("\nInforme a opcao do menu que deseja acessar:\n\n");
         printf("+ ---------------  MENU  ------------------ + \n");
         printf("|    0 - Sair                               |\n");
