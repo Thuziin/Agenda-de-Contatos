@@ -9,39 +9,44 @@
 #define TAMANHO_TELEFONE 11
 #define ANIVERSARIO 2
 
-// Estrutura de contatos
+// ESTRUTURA DE CONTATOS
 
 typedef struct {
     char nome[TAMANHO_NOME], endereco[TAMANHO_ENDERECO], email[TAMANHO_EMAIL], telefone[TAMANHO_TELEFONE];
     int aniversario[ANIVERSARIO];
 } agenda;
 
-// Listar agenda de contatos
+// LISTAR AGENDA DE CONTATOS
 
 void listarAgenda(agenda agendaContatos[], int aux) {
+    // Verifica se agenda ta vazia
     if (aux == 0) {
         printf("AGENDA VAZIA!!");
         return ;
     }
 
+    // Printa cabeçalho
     printf("+-----------------------------+-----------------+----------------- AGENDA -----------------+----------------------------+-----------------+\n");
     printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
     printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
 
+    // Printa os contatos que esta na agenda
     for (int i = 0; i < aux; i++) {
         printf("| %-27s | %-15s | %-40s | %-26s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
         printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
     }
-
 }
 
-// Verificação de contatos
+// VERIFICAÇÃO DE CONTATOS
 
 int verificacaoContatos(agenda agendaContatos[], int aux) {
     char nomeVerificacao[TAMANHO_NOME];
+
+    // Pede ao usuario o nome do contato
     printf("Nome contato: ");
     gets(nomeVerificacao);
 
+    // Verifica se há nome igual ao que foi digitado pelo usuario, na agenda
     for (int i = 0; i < aux; i++) {
         if(strcmp(agendaContatos[i].nome, nomeVerificacao) == 0) {
             printf("NOME JA CADASTRADO, RETORNANDO AO MENU...\n");
@@ -49,19 +54,23 @@ int verificacaoContatos(agenda agendaContatos[], int aux) {
         }
     }
 
+    // Copia o nome digitado pelo usuario na agenda
     strcpy(agendaContatos[aux].nome, nomeVerificacao);
 
     return 0;
 }
 
-// Inclusão de contatos
+// INCLUSÃO DE CONTATOS
 
 int incluirContatos(agenda agendaContatos[], int aux, int MAXIMO) {
     char resp;
     printf("Voce pode incluir ate %d contatos!\n", MAXIMO);
     do {
+
+        // Verifica se a agenda está cheia
         if(aux < MAXIMO) {
            
+            // Verifica se a condição da função 'verificacaoContatos' é valida
             if (verificacaoContatos(agendaContatos, aux)) {
                 return aux;
             }
@@ -81,19 +90,25 @@ int incluirContatos(agenda agendaContatos[], int aux, int MAXIMO) {
             fflush(stdin);
 
         } else {
+            // Caso a agenda esteja cheia, retorna uma mensagem 
             printf("AGENDA CHEIA!\n");
             return aux;
         }
+        // Incrementa aux para adicionar o contato
         aux++;
+
+        // Pergunta se o usuario deseja adicionar mais um contato
         printf("Voce deseja adicionar mais um contato? (S/N): ");
         resp = getche();
         system("cls");
+
+    // Verifica se a resposta é 'sim', caso afirmativo o laço de repetição é execultado novamente
     } while(resp == 'S' || resp == 's');
 
     return aux;
 }
 
-// Alteração de contatos
+// ALTERAÇÃO DE CONTATOS
 
 void alterarContato (agenda agendaContatos[], int aux) {
     listarAgenda(agendaContatos, aux);
@@ -136,7 +151,7 @@ void alterarContato (agenda agendaContatos[], int aux) {
     printf("ESSE CONTATO NAO ESTA CADASTRADO!\n");
 }
 
-// Pesquisa por nome
+// PESQUISA POR NOME
 
 void pesquisarPorNome(agenda agendaContatos[], int aux) {
     listarAgenda(agendaContatos, aux);
@@ -162,7 +177,7 @@ void pesquisarPorNome(agenda agendaContatos[], int aux) {
     printf("CONTATO NAO ENCONTRADO!\n");
 }
 
-// Pesquisa de aniversariantes por mês
+// PESQUISA DE ANIVERSARIANTES POR MÊS
 
 void pesquisarAniversariantesPorMes(agenda agendaContatos[], int aux) {
     listarAgenda(agendaContatos, aux);
@@ -195,7 +210,7 @@ void pesquisarAniversariantesPorMes(agenda agendaContatos[], int aux) {
 
 }
 
-// Exclusão de contato
+// EXCLUSÃO DE CONTATO
 
 int excluirContato(agenda agendaContatos[], int aux) {
     listarAgenda(agendaContatos, aux);
@@ -261,7 +276,7 @@ void main () {
         system("cls");
         fflush(stdin);
 
-        switch (opcao) {
+switch (opcao) {
             case 1 :
                 listarAgenda(agendaContatos, aux);
                 break;
@@ -291,5 +306,4 @@ void main () {
                 break;
         }
     } while (opcao != 0);
-
 }
