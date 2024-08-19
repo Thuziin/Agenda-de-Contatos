@@ -27,14 +27,14 @@ void listarAgenda(agenda agendaContatos[], int aux) {
     }
 
     // Printa cabeçalho
-    printf("+-----------------------------+-----------------+----------------- AGENDA -----------------+----------------------------+-----------------+\n");
-    printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
-    printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+    printf("+-----------------------------+-----------------+----------------- AGENDA -----------------+--------------------------------+-----------------+\n");
+    printf("| %-27s | %-15s | %-40s | %-30s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
+    printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
 
     // Printa os contatos que esta na agenda
     for (int i = 0; i < aux; i++) {
-        printf("| %-27s | %-15s | %-40s | %-26s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
-        printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+        printf("| %-27s | %-15s | %-40s | %-30s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
+        printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
     }
 }
 
@@ -124,11 +124,11 @@ void alterarContato (agenda agendaContatos[], int aux) {
     for (int i = 0; i < aux; i++) {
         if (!strcmp(agendaContatos[i].nome, nomeContato)) {
 
+            printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
+            printf("| %-27s | %-15s | %-40s | %-30s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-            printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
-            printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-            printf("| %-27s | %-15s | %-40s | %-26s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
-            printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+            printf("| %-27s | %-15s | %-40s | %-30s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
+            printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
             
             // Caso o nome esteja na agenda, pede ao usuario os novos dados, exceto o nome.
             printf("\n\nInforme os novos dados!\n");
@@ -171,9 +171,9 @@ void pesquisarPorNome(agenda agendaContatos[], int aux) {
         if(strcmp(agendaContatos[i].nome, nomePesquisado) == 0) {
             // Caso o nome esteja na agenda, printa os dados do contato..
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-            printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
+            printf("| %-27s | %-15s | %-40s | %-30s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-            printf("| %-27s | %-15s | %-40s | %-26s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
+            printf("| %-27s | %-15s | %-40s | %-30s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
             return;
         } 
@@ -197,17 +197,17 @@ void pesquisarAniversariantesPorMes(agenda agendaContatos[], int aux) {
     scanf("%d", &mes);
     system("cls");
     
-    printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-    printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
-    printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+    printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
+    printf("| %-27s | %-15s | %-40s | %-30s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
+    printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
     
     // Verifica se o mes digitado pelo usuario, está na agenda.
     for (int i = 0; i < aux; i++) {
         // Caso o mes esteja na agenda, printa os dados do contato e adiciona 1 a variável de controle.
         if(mes ==  agendaContatos[i].aniversario[1]) {
             verificador++;
-            printf("| %-27s | %-15s | %-40s | %-26s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
-            printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+            printf("| %-27s | %-15s | %-40s | %-30s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
+            printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
 
         }
     }
@@ -237,11 +237,11 @@ int excluirContato(agenda agendaContatos[], int aux) {
         if(strcmp(agendaContatos[i].nome, nomeExclusao) == 0) {
 
             // Caso o nome esteja na agenda, printa os dados do contato e pergunta se o usuario deseja excluir o contato.
-            printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-            printf("| %-27s | %-15s | %-40s | %-26s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
-            printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
-            printf("| %-27s | %-15s | %-40s | %-26s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
-            printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+            printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
+            printf("| %-27s | %-15s | %-40s | %-30s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
+            printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
+            printf("| %-27s | %-15s | %-40s | %-30s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
+            printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
             
             printf("Deseja realmente excluir esse contato? (s/n): ");
             resposta = getche();
