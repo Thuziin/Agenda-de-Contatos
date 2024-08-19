@@ -126,7 +126,7 @@ void alterarContato (agenda agendaContatos[], int aux) {
 
             printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
             printf("| %-27s | %-15s | %-40s | %-30s | %-15s |\n", "NOME", "TELEFONE", "ENDERECO", "EMAIL", "ANIVERSARIO");
-            printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+            printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
             printf("| %-27s | %-15s | %-40s | %-30s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
             printf("+-----------------------------+-----------------+------------------------------------------+--------------------------------+-----------------+\n");
             
@@ -146,6 +146,7 @@ void alterarContato (agenda agendaContatos[], int aux) {
             printf("Informe a data e o mes do aniversario: ");
             scanf("%d %d", &agendaContatos[i].aniversario[0], &agendaContatos[i].aniversario[1]);
 
+            system("cls");
             return ;
         }
     }
@@ -175,6 +176,7 @@ void pesquisarPorNome(agenda agendaContatos[], int aux) {
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
             printf("| %-27s | %-15s | %-40s | %-30s |  %d/%-11d |\n", agendaContatos[i].nome, agendaContatos[i].telefone, agendaContatos[i].endereco, agendaContatos[i].email, agendaContatos[i].aniversario[0], agendaContatos[i].aniversario[1]);
             printf("+-----------------------------+-----------------+------------------------------------------+----------------------------+-----------------+\n");
+
             return;
         } 
     }
@@ -253,10 +255,14 @@ int excluirContato(agenda agendaContatos[], int aux) {
                 for (int j = i; j < aux - 1; j++) {
                     agendaContatos[j] = agendaContatos[j + 1];
                 }
+                
+                system("cls");
 
                 // Decrementa aux para excluir o contato.
                 return aux - 1;
             } else {
+                
+                system("cls");
 
                 // Caso a resposta seja 'não', retorna o valor de aux que foi recebido inicialmente como parametro.
                 return aux;
